@@ -5,17 +5,17 @@
   
   <title>CSS基础 | JoyDu的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="圆角边框  border-radius 四个值分别按顺时针设置 左上角 右上角 右下角 左下角 .radius{//半圆     width: 100px;     height:50px;     border-radius: 50px 50px 0 0;     background-color: blue; } 阴影 //box-shadow: X轴偏移量 Y轴偏移量 [阴影模糊半径] [阴">
+  <meta name="description" content="圆角边框 border-radius 四个值分别按顺时针设置 左上角 右上角 右下角 左下角 .radius{//半圆     width: 100px;     height:50px;     border-radius: 50px 50px 0 0;     background-color: blue; } 阴影//box-shadow: X轴偏移量 Y轴偏移量 [阴影模糊半径] [阴影扩">
 <meta name="keywords" content="css">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS基础">
 <meta property="og:url" content="http://WanGuoDu.github.io/2017/08/13/css_01/index.html">
 <meta property="og:site_name" content="JoyDu的小窝">
-<meta property="og:description" content="圆角边框  border-radius 四个值分别按顺时针设置 左上角 右上角 右下角 左下角 .radius{//半圆     width: 100px;     height:50px;     border-radius: 50px 50px 0 0;     background-color: blue; } 阴影 //box-shadow: X轴偏移量 Y轴偏移量 [阴影模糊半径] [阴">
-<meta property="og:updated_time" content="2017-08-13T07:29:26.166Z">
+<meta property="og:description" content="圆角边框 border-radius 四个值分别按顺时针设置 左上角 右上角 右下角 左下角 .radius{//半圆     width: 100px;     height:50px;     border-radius: 50px 50px 0 0;     background-color: blue; } 阴影//box-shadow: X轴偏移量 Y轴偏移量 [阴影模糊半径] [阴影扩">
+<meta property="og:updated_time" content="2017-08-13T07:44:21.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS基础">
-<meta name="twitter:description" content="圆角边框  border-radius 四个值分别按顺时针设置 左上角 右上角 右下角 左下角 .radius{//半圆     width: 100px;     height:50px;     border-radius: 50px 50px 0 0;     background-color: blue; } 阴影 //box-shadow: X轴偏移量 Y轴偏移量 [阴影模糊半径] [阴">
+<meta name="twitter:description" content="圆角边框 border-radius 四个值分别按顺时针设置 左上角 右上角 右下角 左下角 .radius{//半圆     width: 100px;     height:50px;     border-radius: 50px 50px 0 0;     background-color: blue; } 阴影//box-shadow: X轴偏移量 Y轴偏移量 [阴影模糊半径] [阴影扩">
   
     <link rel="alternate" href="/atom.xml" title="JoyDu的小窝" type="application/atom+xml">
   
@@ -90,16 +90,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>圆角边框 
-border-radius 四个值分别按顺时针设置 左上角 右上角 右下角 左下角
+        <h2 id="圆角边框"><a href="#圆角边框" class="headerlink" title="圆角边框 "></a>圆角边框 </h2><pre><code>border-radius 四个值分别按顺时针设置 左上角 右上角 右下角 左下角
 .radius{//半圆
     width: 100px;
     height:50px;
     border-radius: 50px 50px 0 0;
     background-color: blue;
 }
-阴影
-//box-shadow: X轴偏移量 Y轴偏移量 [阴影模糊半径] [阴影扩展半径] [阴影颜色] [投影方式];
+</code></pre><h2 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h2><pre><code>//box-shadow: X轴偏移量 Y轴偏移量 [阴影模糊半径] [阴影扩展半径] [阴影颜色] [投影方式];
 .radius{
     width: 100px;
     height:50px;
@@ -107,8 +105,7 @@ border-radius 四个值分别按顺时针设置 左上角 右上角 右下角 �
     background-color: blue;
     box-shadow: 3px 4px 2px  #33CC00 inset;
 }
-文本阴影
-text-shadow: X-Offset Y-Offset blur color;/*blur模糊值*/
+</code></pre><h2 id="文本阴影"><a href="#文本阴影" class="headerlink" title="文本阴影"></a>文本阴影</h2><pre><code>text-shadow: X-Offset Y-Offset blur color;/*blur模糊值*/
 .demo {
     width: 340px;
     padding: 30px;
@@ -124,8 +121,7 @@ text-shadow: X-Offset Y-Offset blur color;/*blur模糊值*/
     box-shadow:-4px 4px 6px #666,4px -4px 6px #666 inset;
     border-radius:10px;
 }
-//图片边框
-#border_image {
+</code></pre><h2 id="图片边框"><a href="#图片边框" class="headerlink" title="图片边框"></a>图片边框</h2><pre><code>#border_image {
 margin:0 auto;
 height:100px;
 line-height:100px;
@@ -137,18 +133,14 @@ border:15px solid #ccc;
 border-image: url(&quot;bg_image.jpg&quot;) 70 repeat;
 /*repeat平铺round圆满地铺满，会压缩和拉伸不存在不完整 stretch拉伸，有多远拉多长*/
 }
-
-色彩
-颜色之RGBA
+</code></pre><h2 id="色彩"><a href="#色彩" class="headerlink" title="色彩"></a>色彩</h2><pre><code>颜色之RGBA
 RGB是一种色彩标准，是由红(R)、绿(G)、蓝(B)的变化以及相互叠加来得到各式各样的颜色。RGBA是在RGB的基础上增加了控制alpha透明度的参数。
 语法：
 color：rgba(R,G,B,A)
 以上R、G、B三个参数，正整数值的取值范围为：0 - 255。百分数值的取值范围为：0.0% - 100.0%。超出范围的数值将被截至其最接近的取值极限。并非所有浏览器都支持使用百分数值
 A为透明度参数，取值在0~1之间，不可为负值。
 background-color:rgba(100,120,60,0.5);
-
-渐变色彩
-p {
+</code></pre><h2 id="渐变色彩"><a href="#渐变色彩" class="headerlink" title="渐变色彩"></a>渐变色彩</h2><pre><code>p {
   width: 400px;
   height: 150px;
   line-height: 150px;
@@ -164,9 +156,7 @@ p {
   toleft 从右向左
   to top left 
   to top right
-
-控制文本显示
-.table_set{
+</code></pre><h2 id="控制文本显示"><a href="#控制文本显示" class="headerlink" title="控制文本显示"></a>控制文本显示</h2><pre><code>.table_set{
     table-layout: fixed;
     width:800px;
 }
@@ -192,9 +182,7 @@ src: url(&quot;http://www.imooc.com/Amaranth-BoldItalic.otf&quot;);
     font-size:58px;
     font-family: &quot;MOOC Font&quot;;/*此处必须和@font-face里面font-family的值相同*/
 }
-
-元素背景图片
-设置元素背景图片的原始起始位置border-box边框开始 padding-box内边距开始 content-box内容区域开始
+</code></pre><h2 id="元素背景图片"><a href="#元素背景图片" class="headerlink" title="元素背景图片"></a>元素背景图片</h2><pre><code>设置元素背景图片的原始起始位置border-box边框开始 padding-box内边距开始 content-box内容区域开始
 .box{
     background-origin: padding-box;
 }
@@ -219,8 +207,7 @@ background ： [background-color] | [background-image] | [background-position][/
 
     margin:0 0 20px 0;
 }
-
-属性选择器
+</code></pre><h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><pre><code>属性选择器
 /*标签指定属性值以value开头的*/
 a[class^=column]{
     background:red;
@@ -293,8 +280,7 @@ not和jQuery中的:not选择器一模一样，可以选择除某个元素之外�
 :read-only伪类选择器用来指定处于只读状态元素的样式。简单点理解就是，元素中设置了“readonly=’readonly’
 :read-write选择器刚好与“:read-only”选择器相反，主要用来指定当元素处于非只读状态时的样式。
 ::before和::after这两个主要用来给元素的前面或后面插入内容，这两个常和&quot;content&quot;配合使用，使用的场景最多的就是清除浮动。
-
-CSS变形与动画 旋转rotate()函数通过指定的角度参数使元素相对原点进行旋转。
+</code></pre><h2 id="CSS变形与动画"><a href="#CSS变形与动画" class="headerlink" title="CSS变形与动画"></a>CSS变形与动画</h2><pre><code>旋转rotate()函数通过指定的角度参数使元素相对原点进行旋转。
 eg:.wrapper span {
       display:block;
      -webkit-transform:rotate(20deg);
@@ -333,13 +319,7 @@ translateX(x) translateY(y) translate(x,y)
       -moz-transform:translate(-50%,-50%);
       transform:translate(-50%,-50%);
     }
-
-
-
-
-
-布局
-多列布局——Columns为了能在Web页面中方便实现类似报纸、杂志那种多列排版的布局，W3C特意给CSS3增加了一个多列布局模块（CSS Multi Column Layout Module）。它主要应用在文本的多列布局方面，这种布局在报纸和杂志上都使用了几十年了，但要在Web页面上实现这样的效果还是有相当大的难度，庆幸的是，CSS3的多列布局可以轻松实现。
+</code></pre><h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><pre><code>多列布局——Columns为了能在Web页面中方便实现类似报纸、杂志那种多列排版的布局，W3C特意给CSS3增加了一个多列布局模块（CSS Multi Column Layout Module）。它主要应用在文本的多列布局方面，这种布局在报纸和杂志上都使用了几十年了，但要在Web页面上实现这样的效果还是有相当大的难度，庆幸的是，CSS3的多列布局可以轻松实现。
 columns： || 
 .columns {
   width: 500px;
@@ -439,7 +419,7 @@ transform（变换）
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://WanGuoDu.github.io/2017/08/13/css_01/" data-id="cj6aeume70001ocwgo6j9g9f4" class="article-share-link">Share</a>
+      <a data-url="http://WanGuoDu.github.io/2017/08/13/css_01/" data-id="cj6k780kb00008swgrhbpelcf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
