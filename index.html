@@ -61,29 +61,131 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Angularjs_01" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-angularjs_02" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/08/22/Angularjs_01/" class="article-date">
-  <time datetime="2017-08-22T14:21:00.757Z" itemprop="datePublished">2017-08-22</time>
+    <a href="/2017/08/25/angularjs_02/" class="article-date">
+  <time datetime="2017-08-25T07:22:36.000Z" itemprop="datePublished">2017-08-25</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Angularjs-控制器/">Angularjs 控制器</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/25/angularjs_02/">Angularjs_02</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h2><pre><code>&lt;body ng-app&gt;
+&lt;div ng-controller=&quot;mycontroller&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;&quot; ng-model=&quot;name&quot; value=&quot;&quot; placeholder=&quot;&quot;&gt;{{name}}
+    &lt;input type=&quot;text&quot; name=&quot;&quot; value=&quot;&quot; ng-model=&quot;age&quot; placeholder=&quot;&quot;&gt;{{age}}
+&lt;/div&gt;
+&lt;script&gt;
+    var mycontroller=function ($scope){
+        $scope.name=&quot;张三&quot;;
+        $scope.age=20;
+    }
+&lt;/script&gt;
+&lt;script src=&quot;../vendor/angular/angularjs.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+</code></pre><h2 id="多个控制器"><a href="#多个控制器" class="headerlink" title="多个控制器"></a>多个控制器</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://WanGuoDu.github.io/2017/08/25/angularjs_02/" data-id="cj77n2mv20000j8wg2ry78chp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angularjs/">Angularjs</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-angularjs_01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/23/angularjs_01/" class="article-date">
+  <time datetime="2017-08-23T07:22:36.000Z" itemprop="datePublished">2017-08-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Angularjs-指令/">Angularjs 指令</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/23/angularjs_01/">Angularjs_01</a>
+    </h1>
+  
+
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="MVC-Angularjs"><a href="#MVC-Angularjs" class="headerlink" title="MVC(Angularjs)"></a>MVC(Angularjs)</h2><pre><code>视图 文档模型对象
 控制器 类，js用方法模拟类
 模型数据 被存储在对象中的属性
-</code></pre><p>数据绑定(MVVM)<br>    能自动将Model和View中的数据做同步(能将Model当成唯一可信的数据来源)<br>Angularjs将数据模型和模板传递到浏览器，生成实时更新的视图，所以无论在model或者view上发生变化 都会立刻反应到对方<br>依赖注入<br>    用来处理代码的依赖关系</p>
-
+</code></pre><h2 id="数据绑定-MVVM"><a href="#数据绑定-MVVM" class="headerlink" title="数据绑定(MVVM)"></a>数据绑定(MVVM)</h2><pre><code>能自动将Model和View中的数据做同步(能将Model当成唯一可信的数据来源)
+</code></pre><p>Angularjs将数据模型和模板传递到浏览器，生成实时更新的视图，所以无论在model或者view上发生变化 都会立刻反应到对方</p>
+<h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h2><pre><code>用来处理代码的依赖关系
+</code></pre><h2 id="ng-app"><a href="#ng-app" class="headerlink" title="ng-app"></a>ng-app</h2><pre><code>指定angularjs应用边界，告诉angularjs应该管理哪一块，也可理解为根元素。HTML文档中默认只有一个ng-app会生效，如果有多个则需要手动执行
+</code></pre><h2 id="angularjs表达式"><a href="#angularjs表达式" class="headerlink" title="angularjs表达式"></a>angularjs表达式</h2><pre><code>{{expression}}类似javascript表达式，包含文字、运算符、变量；也可进行计算
+</code></pre><h2 id="ng-init"><a href="#ng-init" class="headerlink" title="ng-init"></a>ng-init</h2><pre><code>//初始化angularjs变量
+&lt;div ng-init=&quot;name=&apos;张三&apos;&quot;&gt;
+    &lt;input type=&quot;text&quot; ng-bind=&quot;name&quot;/&gt;
+&lt;/div&gt;
+</code></pre><h2 id="ng-repeat"><a href="#ng-repeat" class="headerlink" title="ng-repeat"></a>ng-repeat</h2><pre><code>&lt;ul ng-init=&quot;names=[&apos;张三&apos;,&apos;李四&apos;,&apos;王五&apos;]&quot;&gt;
+    &lt;li ng-repeat=&quot;x in names&quot;&gt;{{x}}&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><h2 id="ng-bind"><a href="#ng-bind" class="headerlink" title="ng-bind"></a>ng-bind</h2><pre><code>$scope=&gt;view的单项绑定，相当于{{object.xx}}，用于展示数据
+</code></pre><h2 id="ng-model"><a href="#ng-model" class="headerlink" title="ng-model"></a>ng-model</h2><pre><code>$scope&lt;=&gt;view双向绑定
+</code></pre><h2 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h2><pre><code>&lt;body ng-app&gt;
+&lt;input type=&quot;text&quot; ng-model=&quot;name&quot; value=&quot;&quot; placeholder=&quot;&quot;&gt;
+&lt;input type=&quot;text&quot; ng-model=&quot;name&quot; value=&quot;&quot; placeholder=&quot;&quot;&gt;
+{{name}}
+&lt;script src=&quot;../vendor/angular/angularjs.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+//修改第一个文本框的value则第二个文本框和变量name的值都会变化，由此证明angularjs的数据绑定是双向的
+</code></pre><h2 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h2><pre><code>&lt;body ng-app=&quot;myApp&quot;&gt;
+&lt;runoob-directive&gt;&lt;/runoob-directive&gt;
+&lt;script&gt;
+var app = angular.module(&quot;myApp&quot;, []);
+app.directive(&quot;runoobDirective&quot;, function() {
+    return {
+        template : &quot;&lt;h1&gt;自定义指令!&lt;/h1&gt;&quot;
+    };
+});
+&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://WanGuoDu.github.io/2017/08/22/Angularjs_01/" data-id="cj75wdolv00008owg7dwg7bqs" class="article-share-link">Share</a>
+      <a data-url="http://WanGuoDu.github.io/2017/08/23/angularjs_01/" data-id="cj77n2mvh0004j8wgm675tsqb" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angularjs/">Angularjs</a></li></ul>
+
     </footer>
   </div>
   
@@ -148,7 +250,7 @@ http://www.appinn.com/markdown/
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://WanGuoDu.github.io/2017/08/20/MarkDown语法/" data-id="cj75wdolv00018owguu147pec" class="article-share-link">Share</a>
+      <a data-url="http://WanGuoDu.github.io/2017/08/20/MarkDown语法/" data-id="cj77n2mv20001j8wg38hfvbgg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MarkDown/">MarkDown</a></li></ul>
@@ -192,7 +294,7 @@ http://www.appinn.com/markdown/
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://WanGuoDu.github.io/2017/08/13/MySql_01/" data-id="cj75wdoma00028owg79itigig" class="article-share-link">Share</a>
+      <a data-url="http://WanGuoDu.github.io/2017/08/13/MySql_01/" data-id="cj77n2mvh0005j8wgi8z6igpf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySql/">MySql</a></li></ul>
@@ -559,7 +661,7 @@ transform（变换）
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://WanGuoDu.github.io/2017/08/13/css_01/" data-id="cj75wdoma00068owgkvc6plgx" class="article-share-link">Share</a>
+      <a data-url="http://WanGuoDu.github.io/2017/08/13/css_01/" data-id="cj77n2mvh0006j8wgs810uucu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
@@ -606,7 +708,7 @@ transform（变换）
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://WanGuoDu.github.io/2017/08/11/hello-world/" data-id="cj75wdoma00058owgwfcdu1zj" class="article-share-link">Share</a>
+      <a data-url="http://WanGuoDu.github.io/2017/08/11/hello-world/" data-id="cj77n2mvh000aj8wg4cc1pvj7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -625,7 +727,7 @@ transform（变换）
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/MarkDown/">MarkDown</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/">MySql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Angularjs-指令/">Angularjs 指令</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Angularjs-控制器/">Angularjs 控制器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MarkDown/">MarkDown</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/">MySql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a></li></ul>
     </div>
   </div>
 
@@ -635,7 +737,7 @@ transform（变换）
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MarkDown/">MarkDown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/">MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angularjs/">Angularjs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MarkDown/">MarkDown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/">MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li></ul>
     </div>
   </div>
 
@@ -645,7 +747,7 @@ transform（变换）
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/MarkDown/" style="font-size: 10px;">MarkDown</a> <a href="/tags/MySql/" style="font-size: 10px;">MySql</a> <a href="/tags/css/" style="font-size: 10px;">css</a>
+      <a href="/tags/Angularjs/" style="font-size: 20px;">Angularjs</a> <a href="/tags/MarkDown/" style="font-size: 10px;">MarkDown</a> <a href="/tags/MySql/" style="font-size: 10px;">MySql</a> <a href="/tags/css/" style="font-size: 10px;">css</a>
     </div>
   </div>
 
@@ -667,7 +769,11 @@ transform（变换）
       <ul>
         
           <li>
-            <a href="/2017/08/22/Angularjs_01/">(no title)</a>
+            <a href="/2017/08/25/angularjs_02/">Angularjs_02</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/23/angularjs_01/">Angularjs_01</a>
           </li>
         
           <li>
@@ -680,10 +786,6 @@ transform（变换）
         
           <li>
             <a href="/2017/08/13/css_01/">CSS基础</a>
-          </li>
-        
-          <li>
-            <a href="/2017/08/11/hello-world/">Hello World</a>
           </li>
         
       </ul>
