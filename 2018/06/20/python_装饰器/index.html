@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="装饰器原理# 闭包解释装饰器原理 def decoratorFun(func):     def checkPermissions():         print(&amp;quot;执行权限检测&amp;quot;)         func()     return checkPermissions def proc1():     print(&amp;quot;逻辑处理1&amp;quot;)  def proc2()">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python装饰器">
+<meta property="og:url" content="http://JoyDu.github.io/2018/06/20/python_装饰器/index.html">
+<meta property="og:site_name" content="JoyDu的小窝">
+<meta property="og:description" content="装饰器原理# 闭包解释装饰器原理 def decoratorFun(func):     def checkPermissions():         print(&amp;quot;执行权限检测&amp;quot;)         func()     return checkPermissions def proc1():     print(&amp;quot;逻辑处理1&amp;quot;)  def proc2()">
+<meta property="og:updated_time" content="2019-04-02T14:41:26.981Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python装饰器">
+<meta name="twitter:description" content="装饰器原理# 闭包解释装饰器原理 def decoratorFun(func):     def checkPermissions():         print(&amp;quot;执行权限检测&amp;quot;)         func()     return checkPermissions def proc1():     print(&amp;quot;逻辑处理1&amp;quot;)  def proc2()">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://JoyDu.github.io/2018/06/20/python_装饰器/"/>
+
+
+
+
+
+  <title>python装饰器 | JoyDu的小窝</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JoyDu的小窝</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://JoyDu.github.io/2018/06/20/python_装饰器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joy Du">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JoyDu的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python装饰器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-20T19:42:00+08:00">
+                2018-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="装饰器原理"><a href="#装饰器原理" class="headerlink" title="装饰器原理"></a>装饰器原理</h2><pre><code># 闭包解释装饰器原理
+def decoratorFun(func):
+    def checkPermissions():
+        print(&quot;执行权限检测&quot;)
+        func()
+    return checkPermissions
+def proc1():
+    print(&quot;逻辑处理1&quot;)
+
+def proc2():
+    print(&quot;逻辑处理2&quot;)
+
+proc_ret = decoratorFun(proc1)
+proc_ret()
+</code></pre><h2 id="装饰器实例"><a href="#装饰器实例" class="headerlink" title="装饰器实例"></a>装饰器实例</h2><pre><code>def decoratorFun(func):
+    def checkPermissions():
+        print(&quot;执行权限检测&quot;)
+        func()
+    return checkPermissions
+@decoratorFun
+def proc3():
+    print(&quot;逻辑处理3&quot;)
+</code></pre><h2 id="多个装饰器"><a href="#多个装饰器" class="headerlink" title="多个装饰器"></a>多个装饰器</h2><pre><code># 代码执行到装饰器的时候就进行装饰，并不是调用方法的时候才进行装饰
+def makeBold(func):
+    print(&quot;---makebold---&quot;)
+    def wrapped():
+        return &quot;&lt;b&gt;&quot; + func() + &quot;&lt;/b&gt;&quot;
+
+    return wrapped
+
+
+def makeItalic(func):
+    print(&quot;---makeItalic---&quot;)
+    def wrapped():
+        return &quot;&lt;i&gt;&quot; + func() + &quot;&lt;/i&gt;&quot;
+
+    return wrapped
+
+
+@makeBold
+@makeItalic
+def getNode():
+    print(&quot;---getNode---&quot;)
+    return &quot;Hello World&quot;
+
+
+nodeRet = getNode()
+print(nodeRet)
+</code></pre><h2 id="装饰器装饰无参函数"><a href="#装饰器装饰无参函数" class="headerlink" title="装饰器装饰无参函数"></a>装饰器装饰无参函数</h2><pre><code>def func_NoParam(functionName):
+    print(&quot;---func_NoParam---1---&quot;)
+    def func_in():
+        print(&quot;---func_NoParam_in---1---&quot;)
+        functionName()
+        print(&quot;---func_NoParam_in---2---&quot;)
+
+    print(&quot;---func_NoParam---2---&quot;)
+    return func_in
+
+@func_NoParam
+def decorator_NoParam():
+    print(&quot;----decorator_NoParam----&quot;)
+decorator_NoParam()
+</code></pre><h2 id="装饰器装饰有参函数"><a href="#装饰器装饰有参函数" class="headerlink" title="装饰器装饰有参函数"></a>装饰器装饰有参函数</h2><pre><code>def decorator_Param(func):
+    print(&quot;---decorator_Param1---&quot;)
+
+    def decorator_Param_In(a, b):
+        print(&quot;---decorator_Param_in1---&quot;)
+        func(a, b)
+        print(&quot;---decorator_Param_in2---&quot;)
+
+    print(&quot;---decorator_Param2---&quot;)
+    return decorator_Param_In
+
+
+@decorator_Param
+def func_Param(a, b):
+    print(&quot;---func_Param---&quot;)
+    print(&quot;a：%d，b：%d&quot; % (a, b))
+
+
+func_Param(8, 9)
+</code></pre><h2 id="装饰器装饰有返回值的函数"><a href="#装饰器装饰有返回值的函数" class="headerlink" title="装饰器装饰有返回值的函数"></a>装饰器装饰有返回值的函数</h2><pre><code>def decorator_return(func):
+    def dec_return():
+        print(&quot;---decorator_return_in_1---&quot;)
+        ret = func()
+        print(&quot;---decorator_return_in_2---&quot;)
+        return ret
+
+    return dec_return
+
+
+@decorator_return
+def func_return():
+    print(&quot;---func_return---&quot;)
+    return &quot;func_return已执行&quot;
+
+
+ret_dec_return = func_return()
+print(ret_dec_return)
+</code></pre><h2 id="通用装饰器"><a href="#通用装饰器" class="headerlink" title="通用装饰器"></a>通用装饰器</h2><pre><code>def decorator_general(func):
+    def dec_general(*args, **kwargs):
+        print(&quot;---decorator_general_in_1---&quot;)
+        ret = func(*args, **kwargs)
+        print(&quot;---decorator_general_in_2---&quot;)
+        return ret
+
+    return dec_general
+
+
+@decorator_general
+def func_general(a, b, c):
+    print(&quot;---a:%d,b:%d,c%d---&quot; % (a, b, c))
+    return a + b + c
+
+
+general_ret = func_general(1, 2, 3)
+print(&quot;通用装饰器返回值：%d&quot; % general_ret)
+</code></pre><h2 id="带有参数的装饰器"><a href="#带有参数的装饰器" class="headerlink" title="带有参数的装饰器"></a>带有参数的装饰器</h2><pre><code>def decorator_arg(arg):
+    def decorator_arg_func(func):
+        def dec_arg_in():
+            print(&quot;带参装饰器arg:%d&quot; % arg)
+            if (arg &gt; 0):
+                func()
+            else:
+                print(&quot;arg必须大于零&quot;)
+
+        return dec_arg_in
+
+    return decorator_arg_func
+
+
+@decorator_arg(3)
+def func_dec_arg():
+    print(&quot;带参装饰器已执行&quot;)
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/20/singletonpattern/" rel="next" title="python之单例模式">
+                <i class="fa fa-chevron-left"></i> python之单例模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/11/java_basic/" rel="prev" title="java基础">
+                java基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Joy Du</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">Kategorien</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰器原理"><span class="nav-number">1.</span> <span class="nav-text">装饰器原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰器实例"><span class="nav-number">2.</span> <span class="nav-text">装饰器实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个装饰器"><span class="nav-number">3.</span> <span class="nav-text">多个装饰器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰器装饰无参函数"><span class="nav-number">4.</span> <span class="nav-text">装饰器装饰无参函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰器装饰有参函数"><span class="nav-number">5.</span> <span class="nav-text">装饰器装饰有参函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰器装饰有返回值的函数"><span class="nav-number">6.</span> <span class="nav-text">装饰器装饰有返回值的函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通用装饰器"><span class="nav-number">7.</span> <span class="nav-text">通用装饰器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带有参数的装饰器"><span class="nav-number">8.</span> <span class="nav-text">带有参数的装饰器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joy Du</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

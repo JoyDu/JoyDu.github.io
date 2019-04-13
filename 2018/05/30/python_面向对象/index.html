@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="类经典类 class 类名：     方法列表 新式类 class(object) 类名：     方法列表 创建对象 对象名=类名()  __init__()方法： class student:     def __init__(self):         pass  这里的self类似于this指针  魔法方法： def __str__(self):     msg=&amp;quot;实现我就能在">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python之面向对象">
+<meta property="og:url" content="http://JoyDu.github.io/2018/05/30/python_面向对象/index.html">
+<meta property="og:site_name" content="JoyDu的小窝">
+<meta property="og:description" content="类经典类 class 类名：     方法列表 新式类 class(object) 类名：     方法列表 创建对象 对象名=类名()  __init__()方法： class student:     def __init__(self):         pass  这里的self类似于this指针  魔法方法： def __str__(self):     msg=&amp;quot;实现我就能在">
+<meta property="og:updated_time" content="2019-04-02T14:41:26.981Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python之面向对象">
+<meta name="twitter:description" content="类经典类 class 类名：     方法列表 新式类 class(object) 类名：     方法列表 创建对象 对象名=类名()  __init__()方法： class student:     def __init__(self):         pass  这里的self类似于this指针  魔法方法： def __str__(self):     msg=&amp;quot;实现我就能在">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://JoyDu.github.io/2018/05/30/python_面向对象/"/>
+
+
+
+
+
+  <title>python之面向对象 | JoyDu的小窝</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JoyDu的小窝</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://JoyDu.github.io/2018/05/30/python_面向对象/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joy Du">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JoyDu的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python之面向对象</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-30T21:42:00+08:00">
+                2018-05-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><pre><code>经典类
+class 类名：
+    方法列表
+新式类
+class(object) 类名：
+    方法列表
+创建对象
+对象名=类名()
+
+__init__()方法：
+class student:
+    def __init__(self):
+        pass
+
+这里的self类似于this指针
+
+魔法方法：
+def __str__(self):
+    msg=&quot;实现我就能在print输出对象的时候打印从我这返回的数据&quot;
+    return msg
+
+def __del__(self):
+    print(&quot;当对象被删除时自动调用&quot;)
+注意:当变量保存的对象的引用时，此对象的引用计数就会加一，只有当这个对象的引用计数为零才会执行__del__()
+
+def __init__(self):
+    print(&quot;这里对属性做处理&quot;)
+
+def __new__(cls):
+    print(&quot;实例化方法时&quot;)
+    return object.__new__(cls)
+注意：__new__至少要有一个参数cls，代表要实例化的类，此参数在实例化时由Python解释器自动提供
+    __new__必须要有返回值，返回实例化出来的实例，这点在自己实现__new__时要特别注意，可以return父类__new__出来的实例，或者直接是object的__new__出来的实例
+    __init__有一个参数self，就是这个__new__返回的实例，__init__在__new__的基础上可以完成一些其它初始化的动作，__init__不需要返回值
+</code></pre><p><strong>new</strong>()实现单例模式</p>
+<pre><code># 实例化一个单例
+class Singleton(object):
+    __instance = None
+
+    def __new__(cls, age, name):
+        #如果类数字能够__instance没有或者没有赋值
+        #那么就创建一个对象，并且赋值为这个对象的引用，保证下次调用这个方法时
+        #能够知道之前已经创建过对象了，这样就保证了只有1个对象
+        if not cls.__instance:
+            cls.__instance = object.__new__(cls)
+        return cls.__instance
+
+a = Singleton(18, &quot;dongGe&quot;)
+b = Singleton(8, &quot;dongGe&quot;)
+
+print(id(a))
+print(id(b))
+
+a.age = 19 #给a指向的对象添加一个属性
+print(b.age)#获取b指向的对象的age属性
+</code></pre><h2 id="属性封装"><a href="#属性封装" class="headerlink" title="属性封装"></a>属性封装</h2><pre><code>类似__name双下划线的为私有属性否则为公有属性
+class People(object):
+
+    def __init__(self, name):
+        self.__name = name
+
+    def getName(self):
+        return self.__name
+
+    def setName(self, newName):
+        if len(newName) &gt;= 5:
+            self.__name = newName
+        else:
+            print(&quot;error:名字长度需要大于或者等于5&quot;)
+
+xiaoming = People(&quot;dongGe&quot;)
+print(xiaoming.__name)
+</code></pre><p>继承<br>    单继承：<br>    class Animal(object):</p>
+<pre><code>    def __init__(self, name=&apos;动物&apos;, color=&apos;白色&apos;):
+        self.__name = name
+        self.color = color
+
+    def __test(self):
+        print(self.__name)
+        print(self.color)
+
+    def test(self):
+        print(self.__name)
+        print(self.color)
+
+
+
+class Dog(Animal):
+    def dogTest1(self):
+        #print(self.__name) #不能访问到父类的私有属性
+        print(self.color)
+
+
+    def dogTest2(self):
+        #self.__test() #不能访问父类中的私有方法
+        self.test()
+
+
+A = Animal()
+#print(A.__name) #程序出现异常，不能访问私有属性
+print(A.color)
+#A.__test() #程序出现异常，不能访问私有方法
+A.test()
+
+print(&quot;------分割线-----&quot;)
+
+D = Dog(name = &quot;小花狗&quot;, color = &quot;黄色&quot;)
+D.dogTest1()
+D.dogTest2()
+
+注意：
+私有的属性，不能通过对象直接访问，但是可以通过方法访问
+私有的方法，不能通过对象直接访问
+私有的属性、方法，不会被子类继承，也不能被访问
+一般情况下，私有的属性、方法都是不对外公布的，往往用来做内部的事情，起到安全的作用
+</code></pre><h2 id="多继承"><a href="#多继承" class="headerlink" title="多继承"></a>多继承</h2><pre><code># 定义一个父类
+class A:
+    def printA(self):
+        print(&apos;----A----&apos;)
+
+# 定义一个父类
+class B:
+    def printB(self):
+        print(&apos;----B----&apos;)
+
+# 定义一个子类，继承自A、B
+class C(A,B):
+    def printC(self):
+        print(&apos;----C----&apos;)
+
+obj_C = C()
+obj_C.printA()
+#----A----
+obj_C.printB()
+#----B----
+
+#当继承类中存在重名方法
+#coding=utf-8
+class base(object):
+    def test(self):
+        print(&apos;----base test----&apos;)
+class A(base):
+    def test(self):
+        print(&apos;----A test----&apos;)
+
+# 定义一个父类
+class B(base):
+    def test(self):
+        print(&apos;----B test----&apos;)
+
+# 定义一个子类，继承自A、B
+class C(A,B):
+    pass
+
+
+obj_C = C()
+obj_C.test() #----A test----
+
+print(C.__mro__) #可以查看C类的对象搜索方法时的先后顺序
+#(&lt;class &apos;__main__.C&apos;&gt;, &lt;class &apos;__main__.A&apos;&gt;, &lt;class &apos;__main__.B&apos;&gt;, &lt;class &apos;__main__.base&apos;&gt;, &lt;class &apos;object&apos;&gt;)
+</code></pre><h2 id="重写父类方法与调用父类方法"><a href="#重写父类方法与调用父类方法" class="headerlink" title="重写父类方法与调用父类方法"></a>重写父类方法与调用父类方法</h2><pre><code>重写父类方法：子类中又一个和父类相同名字的方法，会覆盖掉父类中同名的方法
+调用父类方法：
+#coding=utf-8
+class Cat(object):
+    def __init__(self,name):
+        self.name = name
+        self.color = &apos;yellow&apos;
+
+
+class Bosi(Cat):
+
+    def __init__(self,name):
+        # 调用父类的__init__方法1(python2)
+        #Cat.__init__(self,name)
+        # 调用父类的__init__方法2
+        #super(Bosi,self).__init__(name)
+        # 调用父类的__init__方法3
+        super().__init__(name)
+
+    def getName(self):
+        return self.name
+
+bosi = Bosi(&apos;xiaohua&apos;)
+
+print(bosi.name)
+print(bosi.color)
+</code></pre><h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><pre><code>python崇尚&quot;鸭子类型&quot;
+#当看到一只鸟走起来像鸭子、游泳起来像鸭子、叫起来也像鸭子，那么这只鸟就可以被称为鸭子
+class F1(object):
+    def show(self):
+        print &apos;F1.show&apos;
+
+class S1(F1):
+
+    def show(self):
+        print &apos;S1.show&apos;
+
+class S2(F1):
+
+    def show(self):
+        print &apos;S2.show&apos;
+
+def Func(obj):
+    print obj.show()
+
+s1_obj = S1()
+Func(s1_obj) 
+
+s2_obj = S2()
+Func(s2_obj)
+</code></pre><p>类属性<br>    类属性<br>    类属性就是类对象所拥有的属性，它被所有类对象的实例对象所共有，在内存中只存在一个副本，这个和C++中类的静态成员变量有点类似。对于公有的类属性，在类外可以通过类对象和实例对象访问</p>
+<pre><code>class People(object):
+    name = &apos;Tom&apos;  #公有的类属性
+    __age = 12     #私有的类属性
+
+p = People()
+
+print(p.name)           #正确
+print(People.name)      #正确
+print(p.__age)            #错误，不能在类外通过实例对象访问私有的类属性
+print(People.__age)        #错误，不能在类外通过类对象访问私有的类属性
+</code></pre><p>实例属性<br>    class People(object):<br>        address = ‘山东’ #类属性<br>        def <strong>init</strong>(self):<br>            self.name = ‘xiaowang’ #实例属性<br>            self.age = 20 #实例属性</p>
+<pre><code>p = People()
+p.age =12 #实例属性
+print(p.address) #正确
+print(p.name)    #正确
+print(p.age)     #正确
+
+print(People.address) #正确
+print(People.name)    #错误
+print(People.age)     #错误 实例属性不能通过类对象直接访问
+
+通过实例(对象)去修改类属性
+class People(object):
+    country = &apos;china&apos; #类属性
+
+
+print(People.country)#china
+p = People()
+print(p.country)#china
+p.country = &apos;japan&apos; 
+print(p.country)  #japan    #实例属性会屏蔽掉同名的类属性
+print(People.country)#china
+del p.country    #删除实例属性
+print(p.country)#china
+注意：
+如果需要在类外修改类属性，必须通过类对象去引用然后进行修改。如果通过实例对象去引用，会产生一个同名的实例属性，这种方式修改的是实例属性，不会影响到类属性，并且之后如果通过实例对象去引用该名称的属性，实例属性会强制屏蔽掉类属性，即引用的是实例属性，除非删除了该实例属性
+</code></pre><p>类方法<br>    是类对象所拥有的方法，需要用修饰器@classmethod来标识其为类方法，对于类方法，第一个参数必须是类对象，一般以cls作为第一个参数（当然可以用其他名称的变量作为其第一个参数，但是大部分人都习惯以’cls’作为第一个参数的名字，就最好用’cls’了），能够通过实例对象和类对象去访问。<br>    可以访问类属性<br>    class People(object):<br>        country = ‘china’</p>
+<pre><code>    #类方法，用classmethod来进行修饰
+    @classmethod
+    def getCountry(cls):
+        return cls.country
+
+p = People()
+print p.getCountry()    #可以用过实例对象引用
+print People.getCountry()    #可以通过类对象引用
+</code></pre><p>静态方法<br>    需要通过修饰器@staticmethod来进行修饰，静态方法不需要多定义参数<br>    class People(object):<br>        country = ‘china’</p>
+<pre><code>    @staticmethod
+    #静态方法
+    def getCountry():
+        return People.country
+print People.getCountry()
+</code></pre><p>类方法 普通方法 静态方法对比<br>    class Tst:<br>    name = ‘tst’</p>
+<pre><code>data = &apos;this is data&apos;
+
+# 普通方法
+def normalMethod(self, name):
+    print self.data, name
+
+# 类方法,可以访问类属性
+@classmethod
+def classMethod(cls, name):
+    print cls.data, name
+
+# 静态方法,不可以访问类属性
+@staticmethod
+def staticMethod(name):
+    print name
+
+# error普通方法必须通过实例调用
+# Tst.normalMethod(&apos;name&apos;)
+Tst.classMethod(&apos;name&apos;)
+Tst.staticMethod(&apos;name&apos;)
+
+总结
+    普通方法,可以通过self访问实例属性
+    类方法,可以通过cls访问类属性
+    静态方法,不可以访问,通过传值的方式，要访问类属性的话必须通过类对象来引用
+</code></pre><p>异常<br>    捕获异常try…except…<br>    eg:<br>    try:<br>        print(‘—–test–1—‘)<br>        open(‘123.txt’,’r’)<br>        print(‘—–test–2—‘)<br>    except IOError:<br>        pass#产生错误时处理的代码<br>    else:<br>        pass#如果没有捕获到异常就执行此处代码<br>    finally:<br>        pass#无论是否有异常都会执行的代码</p>
+<pre><code>捕获多个异常
+try:
+    print(&apos;-----test--1---&apos;)
+    open(&apos;123.txt&apos;,&apos;r&apos;) # 如果123.txt文件不存在，那么会产生 IOError 异常
+    print(&apos;-----test--2---&apos;)
+    print(num)# 如果num变量没有定义，那么会产生 NameError 异常
+
+except (IOError,NameError) as result: 
+    #如果想通过一次except捕获到多个异常可以用一个元组的方式
+
+    # errorMsg里会保存捕获到的错误信息
+    print(result)
+</code></pre><h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><pre><code>在Python中有一个概念叫做模块（module），这个和C语言中的头文件以及Java中的包很类似，比如在Python中要调用sqrt函数，必须用import关键字引入math这个模块，下面就来了解一下Python中的模块。
+说的通俗点：模块就好比是工具包，要想使用这个工具包中的工具(就好比函数)，就需要导入这个模块
+
+Import
+import module as newmoduleName #通过as将模块重命名
+eg：
+import math
+print(math.sqrt(2))
+
+
+from modname import name1[, name2[, ... nameN]]#只导入模块中指定的函数
+eg:
+from fib import fibonacci
+注意：两个模块中含有相同名称函数的时候，后面一次引入会覆盖前一次引入。
+
+
+from … import *导入模块中所有函数
+
+
+当你导入一个模块，Python解析器对模块位置的搜索顺序是：
+当前目录
+如果不在当前目录，Python则搜索在shell变量PYTHONPATH下的每个目录。
+如果都找不到，Python会察看默认路径。UNIX下，默认路径一般为/usr/local/lib/python/
+模块搜索路径存储在system模块的sys.path变量中。变量里包含当前目录，PYTHONPATH和由安装过程决定的默认目录。
+</code></pre><h2 id="模块制作"><a href="#模块制作" class="headerlink" title="模块制作"></a>模块制作</h2><pre><code>模块的名字就是文件的名字
+为了保证模块在被导入的时候不会执行测试的调用代码，根据__name__变量判断脚本是被引入执行还是直接执行
+if __name__==&apos;main&apos;:
+    #执行测试代码
+
+模块中的__all__,类似下面的例子如果文件中有__all__变量则只有变量中的元素可以被from xx import *时导入
+eg:
+__all__=[&quot;test1&quot;,&quot;test2&quot;]
+class Test(object):
+    pass
+def test1():
+    pass
+def test2():
+    pass
+</code></pre><h2 id="Python中的包"><a href="#Python中的包" class="headerlink" title="Python中的包"></a>Python中的包</h2><pre><code>__init__.py控制包的导入行为，__init__.py为空仅仅把这个包导入不会导入包中的模块
+__all__定义在__init__中控制着from包名import *时导入的模块
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/20/python_基础/" rel="next" title="python基础知识">
+                <i class="fa fa-chevron-left"></i> python基础知识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/20/singletonpattern/" rel="prev" title="python之单例模式">
+                python之单例模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Joy Du</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">Kategorien</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类"><span class="nav-number">1.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性封装"><span class="nav-number">2.</span> <span class="nav-text">属性封装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多继承"><span class="nav-number">3.</span> <span class="nav-text">多继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重写父类方法与调用父类方法"><span class="nav-number">4.</span> <span class="nav-text">重写父类方法与调用父类方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">5.</span> <span class="nav-text">多态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块"><span class="nav-number">6.</span> <span class="nav-text">模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块制作"><span class="nav-number">7.</span> <span class="nav-text">模块制作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python中的包"><span class="nav-number">8.</span> <span class="nav-text">Python中的包</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joy Du</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
