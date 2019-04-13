@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="python,读书," />
+  <meta name="keywords" content="python,urllib,spider,爬虫," />
 
 
 
@@ -79,14 +79,17 @@
 
 
 
-<meta name="keywords" content="python,读书">
+<meta name="description" content="Urllib模块 urllib.request     请求模块 urllib.error       异常处理模块 urllib.parse       url解析模块  urllib.robotparser robots.txt解析模块  urllib.request请求# coding=utf-8 # urllib.request.urlopen(url,data=None,[timeout">
+<meta name="keywords" content="python,urllib,spider,爬虫">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python爬虫开发与项目实践">
-<meta property="og:url" content="http://JoyDu.github.io/2019/01/24/python爬虫开发与项目实践/index.html">
+<meta property="og:title" content="python爬虫知识">
+<meta property="og:url" content="http://JoyDu.github.io/2019/04/19/urllib/index.html">
 <meta property="og:site_name" content="JoyDu的小窝">
-<meta property="og:updated_time" content="2019-04-02T14:41:26.982Z">
+<meta property="og:description" content="Urllib模块 urllib.request     请求模块 urllib.error       异常处理模块 urllib.parse       url解析模块  urllib.robotparser robots.txt解析模块  urllib.request请求# coding=utf-8 # urllib.request.urlopen(url,data=None,[timeout">
+<meta property="og:updated_time" content="2019-04-13T06:01:38.051Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python爬虫开发与项目实践">
+<meta name="twitter:title" content="python爬虫知识">
+<meta name="twitter:description" content="Urllib模块 urllib.request     请求模块 urllib.error       异常处理模块 urllib.parse       url解析模块  urllib.robotparser robots.txt解析模块  urllib.request请求# coding=utf-8 # urllib.request.urlopen(url,data=None,[timeout">
 
 
 
@@ -116,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://JoyDu.github.io/2019/01/24/python爬虫开发与项目实践/"/>
+  <link rel="canonical" href="http://JoyDu.github.io/2019/04/19/urllib/"/>
 
 
 
 
 
-  <title>python爬虫开发与项目实践 | JoyDu的小窝</title>
+  <title>python爬虫知识 | JoyDu的小窝</title>
   
 
 
@@ -229,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JoyDu.github.io/2019/01/24/python爬虫开发与项目实践/">
+    <link itemprop="mainEntityOfPage" href="http://JoyDu.github.io/2019/04/19/urllib/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joy Du">
@@ -246,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python爬虫开发与项目实践</h1>
+          <h1 class="post-title" itemprop="name headline">python爬虫知识</h1>
         
 
         <div class="post-meta">
@@ -258,8 +261,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-24T19:42:00+08:00">
-                2019-01-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-19T12:20:00+08:00">
+                2019-04-19
               </time>
             
 
@@ -296,7 +299,49 @@
       
 
       
-        
+        <h2 id="Urllib模块"><a href="#Urllib模块" class="headerlink" title="Urllib模块"></a>Urllib模块</h2><ol>
+<li>urllib.request     请求模块</li>
+<li>urllib.error       异常处理模块</li>
+<li>urllib.parse       url解析模块 </li>
+<li>urllib.robotparser robots.txt解析模块</li>
+</ol>
+<h2 id="urllib-request"><a href="#urllib-request" class="headerlink" title="urllib.request"></a>urllib.request</h2><h1 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h1><pre><code># coding=utf-8
+# urllib.request.urlopen(url,data=None,[timeout, ]*,cafile=None,cadefault=False,context=None)
+import urllib.request
+import urllib.parse
+import urllib.error
+import socket
+
+# get提交数据
+print(&apos;get提交数据&apos;)
+response = urllib.request.urlopen(&quot;http://www.baidu.com&quot;)
+print(response.read().decode(&apos;utf-8&apos;))
+print(&apos;========================================================================&apos;)
+
+# post提交数据
+print(&apos;post提交数据&apos;)
+data = bytes(urllib.parse.urlencode({&apos;word&apos;: &apos;hello&apos;}), encoding=&quot;utf8&quot;)
+# 按照utf8编码格式封装需要post的数据
+response = urllib.request.urlopen(&apos;http://httpbin.org/post&apos;, data=data)
+print(response.read())
+print(&apos;========================================================================&apos;)
+
+# 设置超时
+print(&apos;设置超时&apos;)
+response = urllib.request.urlopen(&quot;http://httpbin.org/get&quot;, timeout=1)
+print(response.read().decode(&apos;utf-8&apos;))
+print(&apos;========================================================================&apos;)
+
+# 捕获报错
+print(&apos;捕获报错&apos;)
+try:
+    response = urllib.request.urlopen(&quot;http://httpbin.org/get&quot;, timeout=0.1)
+except urllib.error.URLError as e:
+    print(e)
+    if isinstance(e.reason, socket.timeout):
+        print(&apos;TIME OUT&apos;)
+print(&apos;========================================================================&apos;)
+</code></pre>
       
     </div>
     
@@ -313,7 +358,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python-读书/" rel="tag"># python,读书</a>
+            <a href="/tags/python-urllib-spider-爬虫/" rel="tag"># python,urllib,spider,爬虫</a>
           
         </div>
       
@@ -326,8 +371,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/19/existsNotexists/" rel="next" title="oracle中的exists和not exists用法">
-                <i class="fa fa-chevron-left"></i> oracle中的exists和not exists用法
+              <a href="/2019/04/13/note/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -335,10 +380,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/15/NetCoreMark/" rel="prev" title=".NetCore教程">
-                .NetCore教程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -390,8 +431,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -453,6 +503,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Urllib模块"><span class="nav-number">1.</span> <span class="nav-text">Urllib模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#urllib-request"><span class="nav-number">2.</span> <span class="nav-text">urllib.request</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求"><span class="nav-number"></span> <span class="nav-text">请求</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
