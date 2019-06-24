@@ -86,7 +86,7 @@
 <meta property="og:url" content="http://JoyDu.github.io/2019/02/15/NetCoreMark/index.html">
 <meta property="og:site_name" content="JoyDu的小窝">
 <meta property="og:description" content="vscode开发.netcore常用命令1.dotnet-new 初始化应用程序项目2.dotnet-restore 还原应用程序的依赖项3.dotnet-build 生成.netcore应用程序4.dotnet-publish 发布.netcore应用程序5.dotnet-run 从源码运行.netcore应用程序6.dotnet-test 使用project.json中指定的测试工具执行测试7">
-<meta property="og:updated_time" content="2019-04-02T14:41:26.941Z">
+<meta property="og:updated_time" content="2019-06-01T04:07:52.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=".NetCore教程">
 <meta name="twitter:description" content="vscode开发.netcore常用命令1.dotnet-new 初始化应用程序项目2.dotnet-restore 还原应用程序的依赖项3.dotnet-build 生成.netcore应用程序4.dotnet-publish 发布.netcore应用程序5.dotnet-run 从源码运行.netcore应用程序6.dotnet-test 使用project.json中指定的测试工具执行测试7">
@@ -301,7 +301,7 @@
       
         <h2 id="vscode开发-netcore常用命令"><a href="#vscode开发-netcore常用命令" class="headerlink" title="vscode开发.netcore常用命令"></a>vscode开发.netcore常用命令</h2><p>1.dotnet-new 初始化应用程序项目<br><br>2.dotnet-restore 还原应用程序的依赖项<br><br>3.dotnet-build 生成.netcore应用程序<br><br>4.dotnet-publish 发布.netcore应用程序<br><br>5.dotnet-run 从源码运行.netcore应用程序<br><br>6.dotnet-test 使用project.json中指定的测试工具执行测试<br><br>7.dotnet-pack 使用你的代码创建NuGet包<br></p>
 <h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>1.不再基于System.Web.dll，而是基于一组精细且充分考虑的 NuGet 包<br><br>2.内置依赖注入(实现IOC即控制反转的一种方式，<a href="https://www.cnblogs.com/alltime/p/6729295.html" target="_blank" rel="external">构造方式注入,属性方式注入</a>)</p>
-<h2 id="ASP-NET-Core-项目配置-Startup"><a href="#ASP-NET-Core-项目配置-Startup" class="headerlink" title="ASP.NET Core 项目配置 ( Startup )"></a>ASP.NET Core 项目配置 ( Startup )</h2><p>1.Startup类必须是公开的，并且包含以下两个方法<br></p>
+<h2 id="ASP-NET-Core-项目配置-Startup"><a href="#ASP-NET-Core-项目配置-Startup" class="headerlink" title="ASP.NET Core 项目配置 ( Startup )"></a>ASP.NET Core 项目配置 ( Startup )</h2><p>Startup类必须是公开的，并且包含以下两个方法<br></p>
 <pre><code>public Class Startup{
     //用于定义应用程序需要的服务，例如ASP.NET Core MVC EF Core和Identity等
     public void ConfigureServices(IServiceCollection services){
@@ -319,7 +319,25 @@ public void Configure(IApplicationBuilder app,IHostingEnvironment env){
         await context.Response.WriteAsync(&quot;Hello World&quot;);
     });
 }
-</code></pre>
+</code></pre><h2 id="ASP-NET-Core中间件"><a href="#ASP-NET-Core中间件" class="headerlink" title="ASP.NET Core中间件"></a>ASP.NET Core中间件</h2><p>一种装配到应用程序管道以处理请求和响应的组件</p><br><p>每个组件：</p><br><p>1.可以选择是否将请求传递到管道中的下一个组件。</p><br><p>2.可在调用管道中的下一个组件前后执行工作。</p><br><p><b>Microsoft.AspNetCore.Diagnostics</b> 异常处理包可以用于异常处理，异常显示页面和诊断信息的 ASP.NET Core 中间件</p><br>    using System;<br>    using System.Collections.Generic;<br>    using System.Linq;<br>    using System.Threading.Tasks;<br>    using Microsoft.AspNetCore.Builder;<br>    using Microsoft.AspNetCore.Hosting;<br>    using Microsoft.AspNetCore.Http;<br>    using Microsoft.Extensions.DependencyInjection;<br>    using Microsoft.Extensions.Configuration;<br>    using Microsoft.AspNetCore.Diagnostics;//引用异常处理<br><br>    namespace test<br>    {<br>        public class Startup<br>        {<br>            public IConfiguration Configuration{get;set;}<br>            public Startup()<br>            {<br>                var builder=new ConfigurationBuilder().AddJsonFile(“AppSettings.json”);<br>                Configuration=builder.Build();<br>            }<br>            // This method gets called by the runtime. Use this method to add services to the container.<br>            // For more information on how to configure your application, visit <a href="https://go.microsoft.com/fwlink/?LinkID=398940" target="_blank" rel="external">https://go.microsoft.com/fwlink/?LinkID=398940</a><br>            public void ConfigureServices(IServiceCollection services)<br>            {<br>            }<br><br>            // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.<br>            public void Configure(IApplicationBuilder app, IHostingEnvironment env)<br>            {<br>                if (env.IsDevelopment())<br>                {<br>                    app.UseDeveloperExceptionPage();<br>                }<br>                //使用欢迎页面<br>                app.UseWelcomePage();<br>                app.Run(async (context) =&gt;<br>                {<br>                    var msg=Configuration[“message”];<br>                    //设置响应类型<br>                    context.Response.ContentType = “text/plain;charset=utf-8”;<br>                    await context.Response.WriteAsync(msg);<br>                });<br>            }<br>        }<br>    }<br><br>ASP.NET Core异常和错误处理<br>—<br>    public void Configure(IApplicationBuilder app, IHostingEnvironment env)<br>    {<br>        //开发环境下捕获报错，会显示详细报错信息，正式环境下则隐藏了相关文件和报错明细<br>        if (env.IsDevelopment())<br>        {<br>            app.UseDeveloperExceptionPage();<br>        }<br>        //使用欢迎页面<br>        app.UseWelcomePage();<br>        app.Run(async (context) =&gt;<br>        {<br>            new Exception(“Throw Exception”)<br>            var msg=Configuration[“message”];<br>            //设置响应类型<br>            context.Response.ContentType = “text/plain;charset=utf-8”;<br>            await context.Response.WriteAsync(msg);<br>        });<br>    }<br><br>ASP.NET Core 静态文件<br>—<br><p>JavaScript 文件、图像图形、CSS 样式表文件等,一般存放在wwwroot目录下</p><br><p>UseStaticFiles中间件机制：</p><br><p>1.如果静态文件是一个可以使用的文件，它将返回该文件，而不会尝试调用下一个中间件</p><br><p>2.如果它没有找到匹配的文件，那么将继续调用下一个中间件</p><br><p>UseDefaultFiles中间件在开发环境使用，获取默认起始页，例如Index.html不区分大小写</p><br><p><b>UseDefaultFiles中间件必须在UseStaticFiles中间件的前面</b></p>
+
+<pre><code>public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        app.UseDefaultFiles();
+        app.UseDeveloperExceptionPage();
+    }
+    app.UseStaticFiles();
+    //ap.Run(async (context) =&gt;
+    //{
+    //    var msg=Configuration[&quot;message&quot;];
+    //    //设置响应类型
+    //    context.Response.ContentType = &quot;text/plain;charset=utf-8&quot;;
+    //    await context.Response.WriteAsync(msg);
+    //});
+}
+</code></pre><h2 id="ASP-NET-Core-配置MVC"><a href="#ASP-NET-Core-配置MVC" class="headerlink" title="ASP.NET Core 配置MVC"></a>ASP.NET Core 配置MVC</h2>
       
     </div>
     
@@ -438,7 +456,7 @@ public void Configure(IApplicationBuilder app,IHostingEnvironment env){
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
@@ -460,7 +478,7 @@ public void Configure(IApplicationBuilder app,IHostingEnvironment env){
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">Tags</span>
                 
               </div>
@@ -495,7 +513,7 @@ public void Configure(IApplicationBuilder app,IHostingEnvironment env){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vscode开发-netcore常用命令"><span class="nav-number">1.</span> <span class="nav-text">vscode开发.netcore常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-number">2.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ASP-NET-Core-项目配置-Startup"><span class="nav-number">3.</span> <span class="nav-text">ASP.NET Core 项目配置 ( Startup )</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vscode开发-netcore常用命令"><span class="nav-number">1.</span> <span class="nav-text">vscode开发.netcore常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-number">2.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ASP-NET-Core-项目配置-Startup"><span class="nav-number">3.</span> <span class="nav-text">ASP.NET Core 项目配置 ( Startup )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ASP-NET-Core中间件"><span class="nav-number">4.</span> <span class="nav-text">ASP.NET Core中间件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ASP-NET-Core-配置MVC"><span class="nav-number">5.</span> <span class="nav-text">ASP.NET Core 配置MVC</span></a></li></ol></div>
             
 
           </div>

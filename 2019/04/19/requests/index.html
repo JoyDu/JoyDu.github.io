@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,requests,spider,爬虫," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Requests模块1.请求方式requests.post(&amp;quot;http://httpbin.org/post&amp;quot;) requests.put(&amp;quot;http://httpbin.org/put&amp;quot;) requests.delete(&amp;quot;http://httpbin.org/delete&amp;quot;) requests.get(&amp;quot;http://htt">
+<meta name="keywords" content="python,requests,spider,爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python爬虫知识">
+<meta property="og:url" content="http://JoyDu.github.io/2019/04/19/requests/index.html">
+<meta property="og:site_name" content="JoyDu的小窝">
+<meta property="og:description" content="Requests模块1.请求方式requests.post(&amp;quot;http://httpbin.org/post&amp;quot;) requests.put(&amp;quot;http://httpbin.org/put&amp;quot;) requests.delete(&amp;quot;http://httpbin.org/delete&amp;quot;) requests.get(&amp;quot;http://htt">
+<meta property="og:updated_time" content="2019-05-02T16:29:28.076Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python爬虫知识">
+<meta name="twitter:description" content="Requests模块1.请求方式requests.post(&amp;quot;http://httpbin.org/post&amp;quot;) requests.put(&amp;quot;http://httpbin.org/put&amp;quot;) requests.delete(&amp;quot;http://httpbin.org/delete&amp;quot;) requests.get(&amp;quot;http://htt">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://JoyDu.github.io/2019/04/19/requests/"/>
+
+
+
+
+
+  <title>python爬虫知识 | JoyDu的小窝</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JoyDu的小窝</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://JoyDu.github.io/2019/04/19/requests/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joy Du">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JoyDu的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python爬虫知识</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-19T12:20:00+08:00">
+                2019-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Requests模块"><a href="#Requests模块" class="headerlink" title="Requests模块"></a>Requests模块</h2><h3 id="1-请求方式"><a href="#1-请求方式" class="headerlink" title="1.请求方式"></a>1.请求方式</h3><pre><code>requests.post(&quot;http://httpbin.org/post&quot;)
+requests.put(&quot;http://httpbin.org/put&quot;)
+requests.delete(&quot;http://httpbin.org/delete&quot;)
+requests.get(&quot;http://httpbin.org/get&quot;)
+requests.options(&quot;http://httpbin.org/options&quot;)
+</code></pre><h3 id="2-Get请求"><a href="#2-Get请求" class="headerlink" title="2.Get请求"></a>2.Get请求</h3><pre><code># 基本Get请求
+response = requests.get(&quot;http://httpbin.org/get?name=lily&amp;age=22&quot;)
+print(response.text)
+
+# 带参数Get请求
+data = {&apos;name&apos;: &quot;germey&quot;, &apos;age&apos;: 22}
+response = requests.get(&quot;http://httpbin.org/get&quot;, params=data)
+print(response.text)
+
+# json解析
+response = requests.get(&quot;http://httpbin.org/get&quot;)
+print(type(response.text))
+print(response.json())
+print(json.loads(response.text))
+print(type(response.json()))
+
+# 获取二进制数据
+response = requests.get(&quot;https://github.com/favicon.ico&quot;)
+print(type(response.text),type(response.content))
+print(response.text)
+print(response.content)
+with open(&quot;favicon.ico&quot;,&quot;wb&quot;) as file:
+    file.write(response.content)
+    file.close()
+
+# 添加headers
+headers = {
+    &apos;User-Agent&apos;: &apos;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&apos;
+}
+response = requests.get(&quot;http://www.zhihu.com/explore&quot;,headers=headers)
+print(response.text)
+</code></pre><h3 id="3-Post请求"><a href="#3-Post请求" class="headerlink" title="3.Post请求"></a>3.Post请求</h3><pre><code># 基本Post请求
+data = {&apos;name&apos;: &apos;germey&apos;, &apos;age&apos;: &apos;22&apos;}
+headers = {
+    &apos;User-Agent&apos;:
+    &apos;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&apos;
+}
+response = requests.post(&quot;http://httpbin.org/post&quot;, data=data, headers=headers)
+print(response.json())
+
+# response属性
+response = requests.get(&apos;http://www.jianshu.com&apos;)
+print(type(response.status_code), response.status_code)
+print(type(response.headers), response.headers)
+print(type(response.cookies), response.cookies)
+print(type(response.url), response.url)
+print(type(response.history), response.history)
+
+# 状态码判断
+response = requests.get(&apos;http://www.jianshu.com/hello.html&apos;)
+exit() if not response.status_code == requests.codes.not_found else print(&apos;404 Not Found&apos;)
+
+response = requests.get(&apos;http://www.jianshu.com&apos;)
+exit() if not response.status_code == 200 else print(&apos;Request Successfully&apos;)
+
+# 文件上传
+files = {&apos;file&apos;: open(&apos;favicon.ico&apos;, &apos;rb&apos;)}
+response = requests.post(&quot;http://httpbin.org/post&quot;, files=files)
+print(response.text)
+
+# 获取cookie
+response = requests.get(&quot;https://www.baidu.com&quot;)
+print(response.cookies)
+for key, value in response.cookies.items():
+    print(key + &quot; = &quot; + value)
+
+# 会话维持(模拟登陆)
+requests.get(&quot;http://httpbin.org/cookies/set/number/123456789&quot;)
+response = requests.get(&quot;http://httpbin.org/cookies&quot;)
+print(response.text)
+
+s = requests.Session()
+s.get(&quot;http://httpbin.org/cookies/set/number/123456789&quot;)
+response = s.get(&quot;http://httpbin.org/cookies&quot;)
+print(response.text)
+
+# 代理设置
+proxies = {
+&quot;http&quot;: &quot;http://127.0.0.1:9743&quot;,
+&quot;https&quot;: &quot;https://127.0.0.1:9743&quot;,
+}
+response = requests.get(&quot;https://www.taobao.com&quot;,proxies=proxies)
+print(response.status_code)
+
+proxies = {
+    &quot;http&quot;: &quot;http://user:password@127.0.0.1:9743/&quot;,
+}
+response = requests.get(&quot;https://www.taobao.com&quot;, proxies=proxies)
+print(response.status_code)
+
+# 超时设置
+from requests.exceptions import ReadTimeout
+try:
+    response = requests.get(&quot;http://httpbin.org/get&quot;, timeout = 0.5)
+    print(response.status_code)
+except ReadTimeout:
+    print(&apos;Timeout&apos;)
+
+# 认证设置
+from requests.auth import HTTPBasicAuth
+
+r = requests.get(&apos;http://120.27.34.24:9001&apos;, auth=HTTPBasicAuth(&apos;user&apos;, &apos;123&apos;))
+print(r.status_code)
+
+r = requests.get(&apos;http://120.27.34.24:9001&apos;, auth=(&apos;user&apos;, &apos;123&apos;))
+print(r.status_code)
+
+# 异常处理
+from requests.exceptions import ReadTimeout, ConnectionError, RequestException
+try:
+    response = requests.get(&quot;http://httpbin.org/get&quot;, timeout = 0.5)
+    print(response.status_code)
+except ReadTimeout:
+    print(&apos;Timeout&apos;)
+except ConnectionError:
+    print(&apos;Connection error&apos;)
+except RequestException:
+    print(&apos;Error&apos;)
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python-requests-spider-爬虫/" rel="tag"># python,requests,spider,爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/13/note/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/19/urllib/" rel="prev" title="python爬虫知识">
+                python爬虫知识 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Joy Du</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">Kategorien</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Requests模块"><span class="nav-number">1.</span> <span class="nav-text">Requests模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-请求方式"><span class="nav-number">1.1.</span> <span class="nav-text">1.请求方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Get请求"><span class="nav-number">1.2.</span> <span class="nav-text">2.Get请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Post请求"><span class="nav-number">1.3.</span> <span class="nav-text">3.Post请求</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joy Du</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
